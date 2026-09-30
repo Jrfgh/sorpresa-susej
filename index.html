@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis del Sistema</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            font-family: 'Courier New', Courier, monospace;
+            color: #58a6ff;
+            text-align: center;
+            padding: 40px 20px;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        #terminal {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: left;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            display: none;
+            font-size: 14px;
+        }
+        #mensaje-final {
+            display: none;
+            margin-top: 10px;
+            animation: fadeIn 1s;
+        }
+        #mensaje-final img {
+            max-width: 220px;
+            max-height: 280px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(88, 166, 255, 0.4);
+            margin-bottom: 12px;
+            border: 2px solid #58a6ff;
+            object-fit: cover;
+        }
+        #texto-cumplido {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-top: 5px;
+            text-shadow: 0 0 10px #58a6ff;
+        }
+        #btn-inicio {
+            background-color: #2ea043;
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(46, 160, 67, 0.3);
+        }
+        #btn-inicio:hover { background-color: #2c974b; }
+    </style>
+</head>
+<body>
+
+    <button id="btn-inicio" onclick="iniciarAnalisis()">🍓🧸 Iniciar Diagnóstico</button>
+
+    <div id="terminal">
+        <div id="linea1"></div>
+        <div id="linea2"></div>
+        <div id="linea3"></div>
+        <div id="linea4"></div>
+        <div id="linea5"></div>
+    </div>
+
+    <div id="mensaje-final">
+        <!-- AQUÍ SE UTILIZA LA FOTO CON SU EXTENSIÓN CORRECTA -->
+        <img src="foto.jpeg" alt="Süsej">
+        <div id="texto-cumplido">¡Qué chica tan linda!</div>
+        <div style="font-size: 11px; color: #8b949e; margin-top: 8px;">(Reporte de programación casual 😉)</div>
+    </div>
+
+    <script>
+        function iniciarAnalisis() {
+            document.getElementById('btn-inicio').style.display = 'none';
+            const terminal = document.getElementById('terminal');
+            terminal.style.display = 'block';
+
+            escribirLinea('linea1', '>>> Cargando módulo de gustos...', () => {
+                escribirLinea('linea2', '>>> Detectando: FRESAS 🍓 y PELUCHES 🧸', () => {
+                    escribirLinea('linea3', '>>> Procesando variables...', () => {
+                        escribirLinea('linea4', '>>> Generando resultado final...', () => {
+                            setTimeout(mostrarFoto, 800);
+                        });
+                    });
+                });
+            });
+        }
+
+        function escribirLinea(elementoId, texto, callback = null) {
+            const elemento = document.getElementById(elementoId);
+            let index = 0;
+            const intervalo = setInterval(() => {
+                if (index < texto.length) {
+                    elemento.innerHTML += texto.charAt(index);
+                    index++;
+                } else {
+                    clearInterval(intervalo);
+                    if (callback) setTimeout(callback, 250);
+                }
+            }, 30);
+        }
+
+        function mostrarFoto() {
+            document.getElementById('terminal').style.display = 'none';
+            document.getElementById('mensaje-final').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
